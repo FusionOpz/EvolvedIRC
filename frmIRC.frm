@@ -1,14 +1,15 @@
 VERSION 5.00
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form frmMain 
-   Caption         =   "WinsockVB IRC Client"
-   ClientHeight    =   4710
+   Caption         =   "EvolvedIRD"
+   ClientHeight    =   4725
    ClientLeft      =   60
    ClientTop       =   450
-   ClientWidth     =   10170
+   ClientWidth     =   10230
+   Icon            =   "frmIRC.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4710
-   ScaleWidth      =   10170
+   ScaleHeight     =   4725
+   ScaleWidth      =   10230
    StartUpPosition =   3  'Windows Default
    Begin VB.TextBox txtChat 
       BeginProperty Font 
@@ -21,10 +22,10 @@ Begin VB.Form frmMain
          Strikethrough   =   0   'False
       EndProperty
       Height          =   285
-      Left            =   120
+      Left            =   0
       TabIndex        =   1
-      Top             =   3840
-      Width           =   9975
+      Top             =   4440
+      Width           =   10215
    End
    Begin VB.TextBox txtBuffer 
       BeginProperty Font 
@@ -36,17 +37,17 @@ Begin VB.Form frmMain
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   3615
-      Left            =   120
+      Height          =   4455
+      Left            =   0
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
       TabIndex        =   0
-      Top             =   120
-      Width           =   9975
+      Top             =   0
+      Width           =   10215
    End
    Begin MSWinsockLib.Winsock sckIRC 
-      Left            =   9600
-      Top             =   4200
+      Left            =   9120
+      Top             =   3960
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -65,7 +66,17 @@ Private Sub Form_Load()
         .RemotePort = 6667 'Connect on port 6667
         .Connect
     End With
+    Call Form_Resize
 End Sub
+Private Sub Form_Resize()
+On Error Resume Next
+txtBuffer.Width = ScaleWidth
+txtBuffer.Top = 0
+txtBuffer.Height = ScaleHeight - 285
+txtChat.Width = ScaleWidth
+txtChat.Top = txtBuffer.Height
+End Sub
+
 
 Private Sub Form_Unload(Cancel As Integer)
     'sckIRC.SendData "QUIT : Alpha Testing EvolvedIRC(http://myth.5ers.com" & vbCrLf
