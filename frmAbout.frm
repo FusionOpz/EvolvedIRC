@@ -114,6 +114,9 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+'
+' $id
+'
 Option Explicit
 
 ' Reg Key Security Options...
