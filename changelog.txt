@@ -1,0 +1,11 @@
+##########################
+## EvolvedIRC ChangeLog ##
+##########################
+#
+# DJ = DJ_Dark   (djdark@gmail.com)
+#
+# $Id: changelog.txt,v 1.1 2005/01/28 05:05:55 dj_dark Exp $
+#
+#####January 2005#####
+#
+[Jan-28] - DJ - Added new config file to CVS (options.xml). Fixxed CVS(I hope -_-). There is a minor bug in EvolvedIRC witch keeps it from connecting to normal IRC servers, I still haven't tracked down the problem as of yet. This may be the last comit you will see in VB6 code as the EvolvedIRC team will be converting EvolvedIRC to C/C++ ^_^ (Yes it _will_ run on Mac OS(X), Windows, Linux and Unix).

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evolvedirc xmlns="http://evolved2go.ws4f.us/xmlns/evolvedirc/0.3.0">
+<!--
+EvolvedIRC 0.3.0 Configuration
+==============================
+
+$Id: options.xml,v 1.1 2005/01/28 05:05:55 dj_dark Exp $
+
+This XML file contains all of the settings
+required for EvolvedIRC to properly
+function. Using comments, we attempt to
+completely document what each line changes
+and what each line does, so PLEASE read the
+comments!
+-->
+
+	<userinfo>
+		<username>EvolvedIRC</username> <!-- This is your IRC Username sent to the server using the USER command. -->
+		<nickname>EvolvedIRC</nickname>	<!-- This is your IRC Nickname sent to the server using the NICK command. -->
+		<realname>EvolvedIRC Client</realname> <!-- This is your Realname to identify yourself on the WHOIS query. -->
+	</userinfo>
+
+	<serverinfo>
+		<address>irc.freenode.net</address>
+		<port1>6667</port1>
+		<port2>6668</port2>
+		<defaultchan>#EvolvedIRC</defaultchan>
+		<ircx>1</ircx>
+		<authnotices>false</authnotices>
+	</serverinfo>
+
+</evolvedirc>
