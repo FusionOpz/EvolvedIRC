@@ -107,8 +107,8 @@ End Sub
 
 Private Sub sckIRC_Connect()
     With sckIRC
-        .SendData "NICK Wsvb_test" & vbCrLf
-        .SendData "USER Wsvb_test " & sckIRC.LocalHostName & " " & _
+        .SendData "NICK EvolvedIRC|Test" & vbCrLf
+        .SendData "USER EvolvedIRC " & sckIRC.LocalHostName & " " & _
             UCase(sckIRC.LocalHostName & ":" & sckIRC.LocalPort & "/0") & " :WinsockVB Test Client" & vbCrLf
         .SendData "JOIN #Evolved-IRC" & vbCrLf
     End With
