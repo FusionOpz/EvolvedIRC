@@ -4,7 +4,7 @@
 #
 # DJ = DJ_Dark   (djdark@gmail.com)
 #
-# $Id: changelog.txt,v 1.3 2005/02/11 20:32:44 dj_dark Exp $
+# $Id: changelog.txt,v 1.4 2005/03/02 00:54:45 dj_dark Exp $
 #
 #####June 2004#####
 #
@@ -46,3 +46,7 @@
 #
 [Feb-1] - DJ - Updated changelog.txt
 [Feb-11] - DJ - Changed the XML config file.
+
+#####March 2005#####
+#
+[Mar-1] - DJ - Fixxed bug #1117389 but still will not connect to Dancer IRCd.

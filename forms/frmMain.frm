@@ -45,6 +45,7 @@ Begin VB.Form frmMain
       _ExtentX        =   13785
       _ExtentY        =   9975
       _Version        =   393217
+      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       DisableNoScroll =   -1  'True
@@ -67,7 +68,7 @@ Begin VB.Form frmMain
       Width           =   7815
    End
    Begin MSComctlLib.ImageList iUsers 
-      Left            =   8160
+      Left            =   8520
       Top             =   240
       _ExtentX        =   1005
       _ExtentY        =   1005
@@ -274,7 +275,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://evolved2go.ws4f.us/>
 '
-' $Id: frmMain.frm,v 1.7 2005/01/28 05:05:59 dj_dark Exp $
+' $Id: frmMain.frm,v 1.8 2005/03/02 00:55:02 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -580,7 +581,6 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
       
       ':localhost 353 Ziggy = #Ziggy :.Ziggy
       'on with the show!
-      
       tmpNamesList = RightOf(tmpSplitLF(a), ":")
       tmpNamesArray = Split(tmpNamesList, " ")
       
@@ -599,6 +599,14 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
           tvUsers.Nodes.Add , , tmpNamesArray(B), tmpNamesArray(B) & "", "user", "user"
         End If
       Next B
+    Case "372"
+        RTF_SetBold False
+        RTF_SetColor QBColor(0)
+        RTF_AddText ilIndent
+        RTF_SetBold True
+        RTF_AddText Replace(Split(tmpPrefix, "!")(0), ":", "") & ": "
+        RTF_SetBold False
+        RTF_AddText RightOf(tmpSplitLF(a), ":") & vbCrLf
     Case "433"
       ':localhost 433 Anonymous Ziggy :Nickname is already in use
       RTF_SetColor QBColor(6)
@@ -702,6 +710,7 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
           RTF_SetBold False
           RTF_AddText RightOf(tmpSplitLF(a), ":") & vbCrLf
         Case UCase$(Nick)
+          
           'RTF_SetColor QBColor(2)
           'RTF_SetBold True
           'RTF_AddText ilIndent & Replace(Split(tmpPrefix, "!")(0), ":", "") & ": " & RightOf(tmpSplitLF(a), ":") & vbCrLf
@@ -713,11 +722,11 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
           RTF_SetBold False
           RTF_AddText RightOf(tmpSplitLF(a), ":") & vbCrLf
         'Case UCase$(RightOf(Nick, ":"))
-        '  If Chr(1) & "VERSION" & Chr(1) Then
-        '    RTF_Indent
-        '    RTF_AddBullet Arrow, QBColor(8)
-        '    RTF_SetColor QBColor(8)
-        '    RTF_AddText ilIndent & Replace(Split(tmpPrefix, "!")(0), ":", "") & " has asked for your version" & vbCrLf
+          'If Chr(1) & "VERSION" & Chr(1) Then
+            'RTF_Indent
+            'RTF_AddBullet Arrow, QBColor(8)
+            'RTF_SetColor QBColor(8)
+            'RTF_AddText ilIndent & Replace(Split(tmpPrefix, "!")(0), ":", "") & " has asked for your version" & vbCrLf
             'sckIRC.SendData "PRIVMSG " & Channel & " :" & txtChat.Text & vbCrLf
             'RTF_SetBold False
             'RTF_SetColor QBColor(0)
@@ -726,7 +735,7 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
             'RTF_AddText Nick & ": "
             'RTF_SetBold False
             'RTF_AddText txtChat.Text & vbCrLf
-        '  End If
+          'End If
       End Select
     
   End Select

@@ -11,7 +11,7 @@ Attribute VB_Name = "modConfig"
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://evolved2go.ws4f.us/>
 '
-' $Id: modConfig.bas,v 1.1 2005/01/28 05:06:02 dj_dark Exp $
+' $Id: modConfig.bas,v 1.2 2005/03/02 00:55:02 dj_dark Exp $
 '
 '
 'This program is free software.
