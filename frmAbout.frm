@@ -115,7 +115,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 '
-' $id
+' $Id: frmAbout.frm,v 1.5 2004/06/12 16:04:46 dj_dark Exp $
 '
 Option Explicit
 
