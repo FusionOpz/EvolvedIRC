@@ -4,7 +4,7 @@
 #
 # DJ = DJ_Dark   (djdark@gmail.com)
 #
-# $Id: changelog.txt,v 1.2 2005/02/02 01:07:26 dj_dark Exp $
+# $Id: changelog.txt,v 1.3 2005/02/11 20:32:44 dj_dark Exp $
 #
 #####June 2004#####
 #
@@ -45,3 +45,4 @@
 #####February 2005#####
 #
 [Feb-1] - DJ - Updated changelog.txt
+[Feb-11] - DJ - Changed the XML config file.

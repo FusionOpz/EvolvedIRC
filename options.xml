@@ -1,32 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<evolvedirc xmlns="http://evolved2go.ws4f.us/xmlns/evolvedirc/0.3.0">
-<!--
-EvolvedIRC 0.3.0 Configuration
-==============================
+<?xml version="1.0" encoding="utf-8" ?>
+	<evolvedirc xmlns="http://qr.ws4f.us/xmlns/evolvedirc/0.3.0">
+	
+		<!--
+			EvolvedIRC 0.3.0 Configuration
+			==============================
 
-$Id: options.xml,v 1.1 2005/01/28 05:05:55 dj_dark Exp $
+			$Id: options.xml,v 1.2 2005/02/11 20:32:48 dj_dark Exp $
 
-This XML file contains all of the settings
-required for EvolvedIRC to properly
-function. Using comments, we attempt to
-completely document what each line changes
-and what each line does, so PLEASE read the
-comments!
--->
+			This XML file contains all of the settings
+			required for EvolvedIRC to properly
+			function. Using comments, we attempt to
+			completely document what each line changes
+			and what each line does, so PLEASE read the
+			comments!
+		-->
+		
+		<userinfo>
+			<username>EvolvedIRC</username> <!-- This is your IRC Username sent to the server using the USER command. -->
+			<nickname>EvolvedIRC</nickname>	<!-- This is your IRC Nickname sent to the server using the NICK command. -->
+			<realname>EvolvedIRC Client</realname> <!-- This is your Realname to identify yourself on the WHOIS query. -->
+		</userinfo>
 
-	<userinfo>
-		<username>EvolvedIRC</username> <!-- This is your IRC Username sent to the server using the USER command. -->
-		<nickname>EvolvedIRC</nickname>	<!-- This is your IRC Nickname sent to the server using the NICK command. -->
-		<realname>EvolvedIRC Client</realname> <!-- This is your Realname to identify yourself on the WHOIS query. -->
-	</userinfo>
-
-	<serverinfo>
-		<address>irc.freenode.net</address>
-		<port1>6667</port1>
-		<port2>6668</port2>
-		<defaultchan>#EvolvedIRC</defaultchan>
-		<ircx>1</ircx>
-		<authnotices>false</authnotices>
-	</serverinfo>
-
-</evolvedirc>
+		<serverinfo>
+			<address>irc.freenode.net</address>
+			<port1>6667</port1>
+			<port2>6668</port2>
+			<defaultchan>#EvolvedIRC</defaultchan>
+			<ircx>1</ircx>
+			<authnotices>false</authnotices>
+		</serverinfo>
+		
+		<server-list>
+			<server1 name="Freenode.net" address="irc.freenode.net" port="6667" />
+			<server2 name="Winbeta IRC" address="irc.winbeta.org" port="6667" />
+		</server-list>
+		
+		<!--
+			Core Data
+			==============================
+			
+			Don't not at all change anything 
+			under this section, this is the 
+			configuration for the core of 
+			EvolvedIRC. If anything under 
+			this section is misconfigured 
+			EvolvedIRC will not run.
+		-->
+		<core>
+			<!-- Nothing here yet -->
+		</core>
+	</evolvedirc>
