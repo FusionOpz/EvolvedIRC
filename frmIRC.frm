@@ -2,14 +2,14 @@ VERSION 5.00
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form frmMain 
    Caption         =   "EvolvedIRD"
-   ClientHeight    =   4725
-   ClientLeft      =   60
-   ClientTop       =   450
-   ClientWidth     =   10230
+   ClientHeight    =   4845
+   ClientLeft      =   165
+   ClientTop       =   750
+   ClientWidth     =   10215
    Icon            =   "frmIRC.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4725
-   ScaleWidth      =   10230
+   ScaleHeight     =   4845
+   ScaleWidth      =   10215
    StartUpPosition =   3  'Windows Default
    Begin VB.TextBox txtChat 
       BeginProperty Font 
@@ -21,7 +21,7 @@ Begin VB.Form frmMain
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   285
+      Height          =   405
       Left            =   0
       TabIndex        =   1
       Top             =   4440
@@ -52,6 +52,18 @@ Begin VB.Form frmMain
       _ExtentY        =   741
       _Version        =   393216
    End
+   Begin VB.Menu mFile 
+      Caption         =   "File"
+      NegotiatePosition=   3  'Right
+      Begin VB.Menu mClose 
+         Caption         =   "Close"
+         Shortcut        =   ^C
+      End
+   End
+   Begin VB.Menu mAbout 
+      Caption         =   "About"
+      NegotiatePosition=   1  'Left
+   End
 End
 Attribute VB_Name = "frmMain"
 Attribute VB_GlobalNameSpace = False
@@ -69,18 +81,28 @@ Private Sub Form_Load()
     Call Form_Resize
 End Sub
 Private Sub Form_Resize()
-On Error Resume Next
-txtBuffer.Width = ScaleWidth
-txtBuffer.Top = 0
-txtBuffer.Height = ScaleHeight - 285
-txtChat.Width = ScaleWidth
-txtChat.Top = txtBuffer.Height
+    On Error Resume Next
+    txtBuffer.Width = ScaleWidth
+    txtBuffer.Top = 0
+    txtBuffer.Height = ScaleHeight - 285
+    txtChat.Width = ScaleWidth
+    txtChat.Top = txtBuffer.Height
 End Sub
 
 
 Private Sub Form_Unload(Cancel As Integer)
     'sckIRC.SendData "QUIT : Alpha Testing EvolvedIRC(http://myth.5ers.com" & vbCrLf
     sckIRC.Close
+End Sub
+
+Private Sub mAbout_Click()
+Load frmAbout
+frmAbout.Show
+End Sub
+
+Private Sub mClose_Click()
+    Unload Me
+    'Call Form_Unload
 End Sub
 
 Private Sub sckIRC_Connect()

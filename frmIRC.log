@@ -1,4 +1,1 @@
-Line 47: Class MSWinsockLib.Winsock of control sckIRC was not a loaded control class.
-Line 50: The property name _ExtentX in sckIRC is invalid.
-Line 51: The property name _ExtentY in sckIRC is invalid.
-Line 52: The property name _Version in sckIRC is invalid.
+Line 9: Property Icon in frmMain had an invalid file reference.
