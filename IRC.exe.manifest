@@ -3,10 +3,10 @@
 <assemblyIdentity
     version="1.0.0.0"
     processorArchitecture="X86"
-    name="SilentSoft.Ignition.Server"
+    name="Evolved2Go.Evolved.IRC"
     type="win32"
 />
-<description>ignitionServer Primero</description>
+<description>EvolvedIRC</description>
 <dependency>
     <dependentAssembly>
         <assemblyIdentity
