@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form frmMain 
-   Caption         =   "EvolvedIRD"
+   Caption         =   "EvolvedIRC - Connected to irc.FreeNode.Net Channel #Evolved-IRC"
    ClientHeight    =   4845
    ClientLeft      =   165
    ClientTop       =   750
@@ -46,8 +46,8 @@ Begin VB.Form frmMain
       Width           =   10215
    End
    Begin MSWinsockLib.Winsock sckIRC 
-      Left            =   9120
-      Top             =   3960
+      Left            =   8640
+      Top             =   4200
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -110,7 +110,7 @@ Private Sub sckIRC_Connect()
         .SendData "NICK Wsvb_test" & vbCrLf
         .SendData "USER Wsvb_test " & sckIRC.LocalHostName & " " & _
             UCase(sckIRC.LocalHostName & ":" & sckIRC.LocalPort & "/0") & " :WinsockVB Test Client" & vbCrLf
-        .SendData "JOIN #ignition-project" & vbCrLf
+        .SendData "JOIN #Evolved-IRC" & vbCrLf
     End With
 End Sub
 
@@ -129,6 +129,7 @@ Private Sub sckIRC_DataArrival(ByVal bytesTotal As Long)
     'Update the buffer
     txtBuffer.Text = txtBuffer.Text & sRecv & vbCrLf
     txtBuffer.SelStart = Len(txtBuffer.Text)
+    
 End Sub
 
 Private Sub txtChat_KeyPress(KeyAscii As Integer)
@@ -138,12 +139,12 @@ Private Sub txtChat_KeyPress(KeyAscii As Integer)
         'If the text is not a command (prefixed with '/'), then just speak the text
         'normally. Otherwise, see which command it is, and execute it accordingly.
         If Left$(txtChat.Text, 1) <> "/" Then
-            sckIRC.SendData "PRIVMSG #ignition-project :" & txtChat.Text & vbCrLf
+            sckIRC.SendData "PRIVMSG #Evolved-IRC :" & txtChat.Text & vbCrLf
         Else
             'ME Command
             If LCase$(Left$(txtChat.Text, 4)) = "/me " Then 'It's an action
                 txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 4)
-                sckIRC.SendData "PRIVMSG #ignition-project :" & Chr(1) & "ACTION " & txtChat.Text & Chr(1) & vbCrLf
+                sckIRC.SendData "PRIVMSG #Evolved-IRC :" & Chr(1) & "ACTION " & txtChat.Text & Chr(1) & vbCrLf
             End If
         'Else
             'NICK Command
@@ -157,6 +158,12 @@ Private Sub txtChat_KeyPress(KeyAscii As Integer)
                 txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 6)
                 sckIRC.SendData "JOIN :" & Replace(txtChat.Text, "/join ", "") & vbCrLf
             End If
+        'Else
+            'MODE Command
+            'If LCase$(Left$(txtChat.Text, 6)) = "/mode " Then 'It's to change your current mode
+            '    txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 6)
+            '    sckIRC.SendData "MODE #Evolved-IRC :" & Replace(txtChat.Text, "/mode ", "") & vbCrLf
+            'End If
         End If
         
         txtChat.Text = "" 'Clear the textbox
