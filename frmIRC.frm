@@ -21,7 +21,7 @@ Begin VB.Form frmMain
       _ExtentX        =   18018
       _ExtentY        =   7858
       _Version        =   393217
-      Enabled         =   -1  'True
+      Enabled         =   0   'False
       ScrollBars      =   2
       Appearance      =   0
       TextRTF         =   $"frmIRC.frx":058A
