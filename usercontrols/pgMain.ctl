@@ -6,11 +6,25 @@ Begin VB.UserControl pgMain
    ClientWidth     =   6225
    ScaleHeight     =   5280
    ScaleWidth      =   6225
+   Begin VB.TextBox txtDeChan 
+      Height          =   285
+      Left            =   1920
+      TabIndex        =   11
+      Top             =   1920
+      Width           =   2535
+   End
+   Begin VB.TextBox txtRealnm 
+      Height          =   285
+      Left            =   1920
+      TabIndex        =   9
+      Top             =   840
+      Width           =   2535
+   End
    Begin VB.TextBox txtServ 
       Height          =   285
       Left            =   1920
       TabIndex        =   3
-      Top             =   840
+      Top             =   1200
       Width           =   2535
    End
    Begin VB.TextBox txtPort 
@@ -18,7 +32,7 @@ Begin VB.UserControl pgMain
       Left            =   1920
       TabIndex        =   2
       Text            =   "6667"
-      Top             =   1200
+      Top             =   1560
       Width           =   2535
    End
    Begin VB.TextBox txtNick 
@@ -37,12 +51,28 @@ Begin VB.UserControl pgMain
       Top             =   480
       Width           =   2535
    End
+   Begin VB.Label lblDeChan 
+      Caption         =   "Default Channel:"
+      Height          =   255
+      Left            =   120
+      TabIndex        =   10
+      Top             =   1920
+      Width           =   1695
+   End
+   Begin VB.Label lblRealnm 
+      Caption         =   "Real Name:"
+      Height          =   375
+      Left            =   120
+      TabIndex        =   8
+      Top             =   840
+      Width           =   1815
+   End
    Begin VB.Label lblServ 
       Caption         =   "Server Address:"
       Height          =   255
       Left            =   120
       TabIndex        =   7
-      Top             =   840
+      Top             =   1200
       Width           =   1695
    End
    Begin VB.Label lblPort 
@@ -50,7 +80,7 @@ Begin VB.UserControl pgMain
       Height          =   255
       Left            =   120
       TabIndex        =   6
-      Top             =   1200
+      Top             =   1560
       Width           =   1695
    End
    Begin VB.Label lblNick 
@@ -75,3 +105,14 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
+Private Sub UserControl_Initialize()
+    'User Options
+    txtNick.Text = ReadINI("userinfo", "nickname", App.Path + "\option.ini")
+    txtUser.Text = ReadINI("userinfo", "username", App.Path + "\option.ini")
+    txtRealnm.Text = ReadINI("userinfo", "realname", App.Path + "\option.ini")
+    
+    'Server Options
+    txtServ.Text = ReadINI("server", "address", App.Path + "\option.ini")
+    txtPort.Text = ReadINI("server", "port", App.Path + "\option.ini")
+    txtDeChan.Text = ReadINI("server", "defaultchan", App.Path + "\option.ini")
+End Sub

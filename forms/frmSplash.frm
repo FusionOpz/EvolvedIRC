@@ -69,9 +69,9 @@ Attribute VB_Exposed = False
 'Released under the GNU General Public License
 'Contact information: Matthew Sporich (DJ_Dark) <djdark@gmail.com>
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
-'                     Website <http://myth.ws4f.us/>
+'                     Website <http://evolved2go.ws4f.us/>
 '
-' $Id: frmSplash.frm,v 1.4 2004/10/22 03:56:44 dj_dark Exp $
+' $Id: frmSplash.frm,v 1.5 2005/01/03 06:13:38 dj_dark Exp $
 '
 '
 'This program is free software.

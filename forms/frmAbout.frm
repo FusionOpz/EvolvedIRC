@@ -162,9 +162,9 @@ Attribute VB_Exposed = False
 'Released under the GNU General Public License
 'Contact information: Matthew Sporich (DJ_Dark) <djdark@gmail.com>
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
-'                     Website <http://myth.ws4f.us/>
+'                     Website <http://evolved2go.ws4f.us/>
 '
-' $Id: frmAbout.frm,v 1.4 2004/10/22 03:56:44 dj_dark Exp $
+' $Id: frmAbout.frm,v 1.5 2005/01/03 06:13:38 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -218,8 +218,10 @@ Private Sub cmdOk_Click()
 End Sub
 
 Private Sub Form_Load()
+    Dim Version As String
+    Version = "Version: " & App.Major & "." & App.Minor & "." & App.Revision & " (Build ID " & BuildID & ")"
     Me.Caption = "About " & App.Title
-    lblVersion.Caption = "Version: " & App.Major & "." & App.Minor & "." & App.Revision & " Build: 0003"
+    lblVersion.Caption = Version
     lblTitle.Caption = App.Title
 End Sub
 

@@ -18,7 +18,7 @@ SetCompressor lzma
 !define PRODUCT_NAME "EvolvedIRC"
 !define PRODUCT_VERSION "0.1a"
 !define PRODUCT_PUBLISHER "Evolved2Go"
-!define PRODUCT_WEB_SITE "http://myth.ws4f.us"
+!define PRODUCT_WEB_SITE "http://evolved2go.ws4f.us"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\evolvedirc.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
