@@ -109,7 +109,7 @@ Private Sub sckIRC_Connect()
     With sckIRC
         .SendData "NICK EvolvedIRC|Test" & vbCrLf
         .SendData "USER EvolvedIRC " & sckIRC.LocalHostName & " " & _
-            UCase(sckIRC.LocalHostName & ":" & sckIRC.LocalPort & "/0") & " :WinsockVB Test Client" & vbCrLf
+            UCase(sckIRC.LocalHostName & ":" & sckIRC.LocalPort & "/0") & " :EvolvedIRC Test Client" & vbCrLf
         .SendData "JOIN #Evolved-IRC" & vbCrLf
     End With
 End Sub
@@ -160,10 +160,16 @@ Private Sub txtChat_KeyPress(KeyAscii As Integer)
             End If
         'Else
             'MODE Command
-            'If LCase$(Left$(txtChat.Text, 6)) = "/mode " Then 'It's to change your current mode
-            '    txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 6)
-            '    sckIRC.SendData "MODE #Evolved-IRC :" & Replace(txtChat.Text, "/mode ", "") & vbCrLf
-            'End If
+            If LCase$(Left$(txtChat.Text, 6)) = "/mode " Then 'It's to change your current mode
+                txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 6)
+                sckIRC.SendData "MODE " & Replace(txtChat.Text, "/mode ", "MODE") & vbCrLf
+            End If
+        'Else
+            'MSG Command
+'            If LCase$(Left$(txtChat.Text, 6)) = "/msg " Then 'It's to change your current mode
+'                txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 6)
+'                sckIRC.SendData "PRIVMSG #Evolved-IRC :" & Chr(1) & "MSG " & txtChat.Text & Chr(1) & vbCrLf
+'            End If
         End If
         
         txtChat.Text = "" 'Clear the textbox
