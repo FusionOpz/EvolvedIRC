@@ -68,7 +68,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 '
-' $Id: frmIRC.frm,v 1.11 2004/06/12 16:04:46 dj_dark Exp $
+' $Id: frmIRC.frm,v 1.12 2004/06/13 13:40:14 dj_dark Exp $
 '
 Option Explicit
 
@@ -166,10 +166,10 @@ Private Sub txtChat_KeyPress(KeyAscii As Integer)
             End If
         'Else
             'MSG Command
-'            If LCase$(Left$(txtChat.Text, 6)) = "/msg " Then 'It's to change your current mode
-'                txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 6)
-'                sckIRC.SendData "PRIVMSG #Evolved-IRC :" & Chr(1) & "MSG " & txtChat.Text & Chr(1) & vbCrLf
-'            End If
+            'If LCase$(Left$(txtChat.Text, 6)) = "/msg " Then 'It's to change your current mode
+                'txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 6)
+                'sckIRC.SendData "PRIVMSG #Evolved-IRC :" & Chr(1) & "MSG " & txtChat.Text & Chr(1) & vbCrLf
+            'End If
         End If
         
         txtChat.Text = "" 'Clear the textbox
