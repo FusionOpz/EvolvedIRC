@@ -11,7 +11,7 @@ Attribute VB_Name = "modMain"
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://evolved2go.ws4f.us/>
 '
-' $Id: modMain.bas,v 1.2 2005/03/02 00:55:02 dj_dark Exp $
+' $Id: modMain.bas,v 1.3 2005/03/02 23:47:25 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -29,7 +29,7 @@ Attribute VB_Name = "modMain"
 Public Server_AuthNotices As Boolean
 
 'some constants
-Public Const BuildID As String = "20050103-cvs"
+Public Const BuildID As String = "20050203-cvs"
 
 'indent constant
 'vbTab is too huge, but somehow you can set tab lengths in the Rich Text box

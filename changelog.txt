@@ -4,7 +4,7 @@
 #
 # DJ = DJ_Dark   (djdark@gmail.com)
 #
-# $Id: changelog.txt,v 1.4 2005/03/02 00:54:45 dj_dark Exp $
+# $Id: changelog.txt,v 1.5 2005/03/02 23:47:08 dj_dark Exp $
 #
 #####June 2004#####
 #
@@ -50,3 +50,4 @@
 #####March 2005#####
 #
 [Mar-1] - DJ - Fixxed bug #1117389 but still will not connect to Dancer IRCd.
+[Mar-2] - DJ - Got EvolvedIRC to connect to dancer IRCd.

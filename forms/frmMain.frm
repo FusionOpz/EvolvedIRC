@@ -45,7 +45,6 @@ Begin VB.Form frmMain
       _ExtentX        =   13785
       _ExtentY        =   9975
       _Version        =   393217
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       DisableNoScroll =   -1  'True
@@ -275,7 +274,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://evolved2go.ws4f.us/>
 '
-' $Id: frmMain.frm,v 1.8 2005/03/02 00:55:02 dj_dark Exp $
+' $Id: frmMain.frm,v 1.9 2005/03/02 23:47:25 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -622,6 +621,9 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
             RTF_SetColor QBColor(3)
             RTF_AddText ilIndent & RightOf(tmpSplitLF(a), ":") & vbCrLf
           'End If
+        Case UCase$(Nick)
+          RTF_SetColor QBColor(3)
+          RTF_AddText ilIndent & RightOf(tmpSplitLF(a), ":") & vbCrLf
       End Select
       'If Replace(Split(tmpPrefix, "!")(0), ":", "") = NickServ Then
         
@@ -638,7 +640,8 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
         RTF_AddBullet Arrow, QBColor(8)
         RTF_SetColor QBColor(8)
         RTF_AddText " " & Replace(Split(tmpPrefix, "!")(0), ":", "") & " has joined the conversation." & vbCrLf
-        tvUsers.Nodes.Add , , Replace(Split(tmpPrefix, "!")(0), ":", ""), Replace(Split(tmpPrefix, "!")(0), ":", "")
+        tvUsers.Nodes.Clear
+        sckIRC.SendData "NAMES :" & Channel & vbCrLf
       End If
     Case "PING"
         RTF_Indent
@@ -661,9 +664,9 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
         RTF_AddBullet Arrow, QBColor(8)
         RTF_SetColor QBColor(8)
         If UBound(tmpSplit) = 2 Then
-          RTF_AddText " " & Replace(Split(tmpPrefix, "!")(0), ":", "") & " has left the conversation." & vbCrLf
+          RTF_AddText " " & Replace(Split(tmpPrefix, "!")(0), ":", "") & " has left the channel." & vbCrLf
         Else
-          RTF_AddText " " & Replace(Split(tmpPrefix, "!")(0), ":", "") & " has left the conversation (" & RightOf(tmpSplitLF(a), ":") & ")." & vbCrLf
+          RTF_AddText " " & Replace(Split(tmpPrefix, "!")(0), ":", "") & " has left the channel (" & RightOf(tmpSplitLF(a), ":") & ")." & vbCrLf
         End If
         RemoveKey Replace(Split(tmpPrefix, "!")(0), ":", "")
       End If
@@ -721,7 +724,11 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
           RTF_AddText Replace(Split(tmpPrefix, "!")(0), ":", "") & ": "
           RTF_SetBold False
           RTF_AddText RightOf(tmpSplitLF(a), ":") & vbCrLf
-        'Case UCase$(RightOf(Nick, ":"))
+        Case UCase$(Nick) & Chr(1) & "VERSION" & Chr(1)
+          RTF_Indent
+          RTF_AddBullet Arrow, QBColor(8)
+          RTF_SetColor QBColor(8)
+          RTF_AddText ilIndent & Replace(Split(tmpPrefix, "!")(0), ":", "") & " has asked for your version" & vbCrLf
           'If Chr(1) & "VERSION" & Chr(1) Then
             'RTF_Indent
             'RTF_AddBullet Arrow, QBColor(8)
@@ -895,7 +902,7 @@ Private Sub txtChat_KeyPress(KeyAscii As Integer)
                 sckIRC.SendData "PRIVMSG " & SendTo & ":" & Right(txtChat.Text, Len(txtChat.Text) - (Count - 1)) & vbCrLf
             End If
             
-            If UCase$(Left$(txtChat.Text, 8)) = "/VERSION" Then
+            If UCase$(Left$(txtChat.Text, 11)) = "/VERSION-ME" Then
                 RTF_SetColor QBColor(9)
                 RTF_AddText ilIndent & "EvolvedIRC Version " & Version & vbCrLf
                 RTF_SetColor QBColor(9)

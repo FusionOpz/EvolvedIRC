@@ -71,7 +71,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://evolved2go.ws4f.us/>
 '
-' $Id: frmSplash.frm,v 1.8 2005/03/02 00:55:02 dj_dark Exp $
+' $Id: frmSplash.frm,v 1.9 2005/03/02 23:47:25 dj_dark Exp $
 '
 '
 'This program is free software.
