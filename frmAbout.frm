@@ -154,7 +154,7 @@ End Sub
 
 Private Sub Form_Load()
     Me.Caption = "About " & App.Title
-    lblVersion.Caption = "Version " & App.Major & "." & App.Minor & "." & App.Revision
+    lblVersion.Caption = "Version: " & App.Major & "." & App.Minor & "." & App.Revision & " Pre-Alpha"
     lblTitle.Caption = App.Title
 End Sub
 

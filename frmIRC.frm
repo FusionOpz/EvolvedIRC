@@ -1,5 +1,6 @@
 VERSION 5.00
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Begin VB.Form frmMain 
    Caption         =   "EvolvedIRC - Connected to irc.FreeNode.Net Channel #Evolved-IRC"
    ClientHeight    =   4845
@@ -11,6 +12,20 @@ Begin VB.Form frmMain
    ScaleHeight     =   4845
    ScaleWidth      =   10215
    StartUpPosition =   3  'Windows Default
+   Begin RichTextLib.RichTextBox txtBuffer 
+      Height          =   4455
+      Left            =   0
+      TabIndex        =   1
+      Top             =   0
+      Width           =   10215
+      _ExtentX        =   18018
+      _ExtentY        =   7858
+      _Version        =   393217
+      Enabled         =   -1  'True
+      ScrollBars      =   2
+      Appearance      =   0
+      TextRTF         =   $"frmIRC.frx":058A
+   End
    Begin VB.TextBox txtChat 
       BeginProperty Font 
          Name            =   "Fixedsys"
@@ -23,26 +38,8 @@ Begin VB.Form frmMain
       EndProperty
       Height          =   405
       Left            =   0
-      TabIndex        =   1
-      Top             =   4440
-      Width           =   10215
-   End
-   Begin VB.TextBox txtBuffer 
-      BeginProperty Font 
-         Name            =   "Fixedsys"
-         Size            =   9
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   4455
-      Left            =   0
-      MultiLine       =   -1  'True
-      ScrollBars      =   2  'Vertical
       TabIndex        =   0
-      Top             =   0
+      Top             =   4440
       Width           =   10215
    End
    Begin MSWinsockLib.Winsock sckIRC 
