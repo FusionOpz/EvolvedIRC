@@ -127,7 +127,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: frmOptions.frm,v 1.2 2004/09/07 20:31:10 dj_dark Exp $
+' $Id: frmOptions.frm,v 1.3 2004/09/08 10:52:15 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -145,10 +145,11 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private iniFile As String
+
 Private Sub Form_Load()
 
-    iniFile = App.Path & "\options.ini"
-    LoadFileToTextbox
+    'iniFile = App.Path & "\options.ini"
+    'LoadFileToTextbox
     
 End Sub
 
@@ -157,5 +158,19 @@ Unload Me
 End Sub
 
 Private Sub cmdOk_Click()
-Unload Me
+    
+    Unload Me
+    
+    'Dim lpSectionName As String
+    'Dim lpKeyName As String
+    'Dim lpValue As String
+    
+    'lpSectionName = "Core"
+    'lpKeyName = "Server" ' & "Port"
+    'lpValue = txtServ.Text ' & txtPort.Text
+    
+    'Call ProfileSaveItem(lpSectionName, lpKeyName, lpValue, iniFile)
+    
+    'LoadFileToTextbox
+        
 End Sub

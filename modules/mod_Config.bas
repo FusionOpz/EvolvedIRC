@@ -11,7 +11,7 @@ Attribute VB_Name = "mod_Config"
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: mod_Config.bas,v 1.1 2004/09/07 20:31:10 dj_dark Exp $
+' $Id: mod_Config.bas,v 1.2 2004/09/08 10:52:15 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -31,7 +31,7 @@ Option Explicit
 Public Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As Any, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Long, ByVal lpFileName As String) As Long
 Public Declare Function WritePrivateProfileString Lib "kernel32" Alias "WitePrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As Any, ByVal lpString As Any, ByVal lpFileName As String) As Long
 
-Public Sub ProfileSaveItem(lpSection As String, lpKeyName As String, lpValue As String, iniFIle As String)
+Public Sub ProfileSaveItem(lpSectionName As String, lpKeyName As String, lpValue As String, iniFile As String)
 
 'This function saves the passed value to the file,
 'under the section and key names specified.
@@ -40,11 +40,11 @@ Public Sub ProfileSaveItem(lpSection As String, lpKeyName As String, lpValue As 
 'If the key name does not exist, it is created.
 'If the key name exists, its value is replaced.
 
-    Call WritePrivateProfileString(lpSectionName, lpKeyName, lpValue, iniFIle)
+    Call WritePrivateProfileString(lpSectionName, lpKeyName, lpValue, iniFile)
     
 End Sub
 
-Public Function ProfileGetItem(lpSection As String, lpKeyName As String, lpValue As String, iniFIle As String) As String
+Public Function ProfileGetItem(lpSection As String, lpKeyName As String, lpValue As String, iniFile As String) As String
 'Retrieves a value from an ini file corresponding
 'to the section and key name passed.
 
@@ -64,7 +64,7 @@ Public Function ProfileGetItem(lpSection As String, lpKeyName As String, lpValue
     ret = Space$(2048)
     nSize = Len(ret)
     
-    success = GetPrivateProfileString(lpSection, lpKeyName, lpValue, iniFIle)
+    success = GetPrivateProfileString(lpSection, lpKeyName, lpValue, iniFile)
     
     If success Then
         ProfileGetItem = Left$(ret, success)
@@ -72,7 +72,7 @@ Public Function ProfileGetItem(lpSection As String, lpKeyName As String, lpValue
        
 End Function
 
-Public Sub ProfileDeleteItem(lpSection As String, lpKeyName As String, iniFIle As String)
+Public Sub ProfileDeleteItem(lpSection As String, lpKeyName As String, iniFile As String)
 'this call will remove the keynames and it's
 'corresponding value from the section specified
 'in lpSectionName. This is accomplished by passing
@@ -90,11 +90,11 @@ Public Sub ProfileDeleteItem(lpSection As String, lpKeyName As String, iniFIle A
 ' Colour1=Red
 ' Colour3=Green
 
-    Call WritePrivateProfileString(lpSectionName, lpKeyName, vbNullString, iniFIle)
+    Call WritePrivateProfileString(lpSectionName, lpKeyName, vbNullString, iniFile)
 
 End Sub
 
-Public Sub ProfileDeleteSection(lpSection As String, iniFIle As String)
+Public Sub ProfileDeleteSection(lpSection As String, iniFile As String)
 'this call will remove the entire section
 'corresponding to lpSectionName. This is
 'accomplished by passing vbNullString
@@ -109,5 +109,5 @@ Public Sub ProfileDeleteSection(lpSection As String, iniFIle As String)
 'as lpSectionName, the resulting Colours
 'section in the ini file would be deleted.
 
-    Call WritePrivateProfileString(lpSectionName, vbNullString, vbNullString, iniFIle)
+    Call WritePrivateProfileString(lpSectionName, vbNullString, vbNullString, iniFile)
 End Sub

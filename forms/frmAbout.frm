@@ -164,7 +164,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: frmAbout.frm,v 1.2 2004/09/07 20:31:10 dj_dark Exp $
+' $Id: frmAbout.frm,v 1.3 2004/09/08 10:52:15 dj_dark Exp $
 '
 '
 'This program is free software.

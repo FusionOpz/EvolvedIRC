@@ -1,4 +1,5 @@
 VERSION 5.00
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form frmMain 
    Caption         =   "EvolvedIRC Codename ""Grasshopper"", Build: 0002"
@@ -19,15 +20,19 @@ Begin VB.Form frmMain
    LinkTopic       =   "Form1"
    ScaleHeight     =   6585
    ScaleWidth      =   9855
-   Begin VB.TextBox txtBuffer 
-      Appearance      =   0  'Flat
+   Begin RichTextLib.RichTextBox txtBuffer 
       Height          =   6135
       Left            =   0
-      MultiLine       =   -1  'True
-      ScrollBars      =   2  'Vertical
       TabIndex        =   2
       Top             =   0
       Width           =   8295
+      _ExtentX        =   14631
+      _ExtentY        =   10821
+      _Version        =   393217
+      Enabled         =   -1  'True
+      ScrollBars      =   2
+      Appearance      =   0
+      TextRTF         =   $"frmMain.frx":2B82
    End
    Begin MSWinsockLib.Winsock sckIRC 
       Left            =   8760
@@ -121,7 +126,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: frmMain.frm,v 1.2 2004/09/07 20:31:10 dj_dark Exp $
+' $Id: frmMain.frm,v 1.3 2004/09/08 10:52:15 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -145,6 +150,7 @@ Option Explicit
 Private Sub Form_Load()
 '    Call Connect
 End Sub
+
 Private Sub Connect()
     With sckIRC
         .RemoteHost = "irc.freenode.net" 'The IRC server
@@ -154,7 +160,7 @@ Private Sub Connect()
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-'    sckIRC.SendData "QUIT Time for me to go l8r" & vbCrLf
+    sckIRC.SendData "QUIT : " & "Time for me to go l8r" & vbCrLf
     sckIRC.Close
 End Sub
 
@@ -167,7 +173,7 @@ Private Sub mnuConnect_Click()
 End Sub
 
 Private Sub mnuDiscon_Click()
-'    sckIRC.SendData "QUIT Time for me to go l8r:" & vbCrLf
+    sckIRC.SendData "QUIT : " & "Time for me to go l8r" & vbCrLf
     sckIRC.Close
 End Sub
 
@@ -182,6 +188,7 @@ End Sub
 Private Sub mnuFnn_Click()
 On Error Resume Next
     With sckIRC
+        .Close
         .RemoteHost = "irc.freenode.net" 'The IRC server
         .RemotePort = 6667 'Connect on port 6667
         .Connect
@@ -194,6 +201,7 @@ End Sub
 
 Private Sub mnuWbo_Click()
     With sckIRC
+        .Close
         .RemoteHost = "irc.winbeta.org" 'The IRC server
         .RemotePort = 6667 'Connect on port 6667
         .Connect

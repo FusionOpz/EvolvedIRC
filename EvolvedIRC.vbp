@@ -15,7 +15,6 @@ Reference=*\G{EE008642-64A8-11CE-920F-08002B369A33}#2.0#0#..\..\..\..\..\SYSTEM\
 Form=forms\frmOptions.frm
 Form=forms\frmAbout.frm
 Form=forms\frmSplash.frm
-Module=mod_Config; modules\mod_Config.bas
 IconForm="frmMain"
 Startup="frmSplash"
 HelpFile=""
