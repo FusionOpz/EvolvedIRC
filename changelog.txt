@@ -4,8 +4,44 @@
 #
 # DJ = DJ_Dark   (djdark@gmail.com)
 #
-# $Id: changelog.txt,v 1.1 2005/01/28 05:05:55 dj_dark Exp $
+# $Id: changelog.txt,v 1.2 2005/02/02 01:07:26 dj_dark Exp $
 #
+#####June 2004#####
+#
+[JUN-10/11] - DJ - Alpha Version 0.0.1
+[JUN-10/11] - DJ - Working on getting all the IRC Client commands in and making a better UI
+[JUN-11] - DJ - Added About Dialog and in frmMain/IRC added a Menu bar thats all for now
+[JUN-11] - DJ - Tryed adding MODE command but with no luck so it's has been commented out for now unless someone wants to give it a shoot
+[JUN-11] - DJ - Added Manifest file WARNING!: Only use the manifest file if your running Windows XP, 2003 or Longhorn Alpha
+[JUN-12] - DJ - Got /mode command working syntax /mode #channel +/-Mode and/or Nick
+[JUN-12] - DJ - Just change the Nick to EvolvedIRC|Test and the User to EvolvedIRC
+[JUN-12] - DJ - Fixed a little problem with the RichTextBox not being able to scroll and copy.
+[JUN-12] - DJ - Fixed a little problem with the RichTextBox not being able to scroll and copy.
+
+#####September 2004#####
+#
+[SEP-2] - DJ - EvolvedIRC Win32 is back and still coded in VB6 and it's got a code name now, Grasshopper, this is Build 0001, JOIN work, ME works NICK and NICKSERV works, NICKSERV is just PRIVMSG nickserv, so no need to use /msg NICKSERV now ^_^ but THIS BUILE WILL ONLY CONNECT TO FREENODE.NET!
+[SEP-7] - DJ - Started work on INI read/writer and trying to get all the IRC Commands in by the end of this month. Tomorrow is My Birthday ^_^(This is random)
+[SEP-7] - DJ - started to put the commands in a Module and removed the mod_Config so I could compile te new binary.
+
+#####October 2004#####
+#
+[OCT-21] - DJ - Commit of EvolvedIRC 0.1.3 Build 0003. Alot has been updated in this build.
+[OCT-21] - DJ - 1). You can now change your nick and the client remembers it.
+[OCT-21] - DJ - 2). You can now join any channel and chat freely now unlike the older builds where you were stuck chatting in #lobby all the time.
+[OCT-21] - DJ - 3). More IRC Commands.
+[OCT-21] - DJ - 4). Still no support for connecting to IRCX servers, we are working on this.
+[OCT-21] - DJ - 5). New options dialog, will be worked on as much as possable.
+[OCT-21] - DJ - 6). Still no formatting done on incoming text and you still can't see your out going text.
+[OCT-21] - DJ - Will I think thats about it, besides having a new developer on the team.
+
+
 #####January 2005#####
 #
+[JAN-03] - DJ - Commit of all the updates since OCT 21.
+[JAN-28] - DJ - fixxing CVS(at least trying to anyway).
 [Jan-28] - DJ - Added new config file to CVS (options.xml). Fixxed CVS(I hope -_-). There is a minor bug in EvolvedIRC witch keeps it from connecting to normal IRC servers, I still haven't tracked down the problem as of yet. This may be the last comit you will see in VB6 code as the EvolvedIRC team will be converting EvolvedIRC to C/C++ ^_^ (Yes it _will_ run on Mac OS(X), Windows, Linux and Unix).
+
+#####February 2005#####
+#
+[Feb-1] - DJ - Updated changelog.txt
