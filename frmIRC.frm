@@ -21,7 +21,6 @@ Begin VB.Form frmMain
       _ExtentX        =   18018
       _ExtentY        =   7858
       _Version        =   393217
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
@@ -69,7 +68,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 '
-' $Id: frmIRC.frm,v 1.13 2004/06/14 06:26:29 dj_dark Exp $
+' $Id: frmIRC.frm,v 1.14 2004/06/14 10:33:04 dj_dark Exp $
 '
 Option Explicit
 
