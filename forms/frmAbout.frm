@@ -68,7 +68,7 @@ Begin VB.Form frmAbout
       Width           =   3975
    End
    Begin VB.Shape Shape1 
-      FillColor       =   &H0080FFFF&
+      FillColor       =   &H80000018&
       FillStyle       =   0  'Solid
       Height          =   855
       Left            =   120
@@ -164,7 +164,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: frmAbout.frm,v 1.3 2004/09/08 10:52:15 dj_dark Exp $
+' $Id: frmAbout.frm,v 1.4 2004/10/22 03:56:44 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -219,7 +219,7 @@ End Sub
 
 Private Sub Form_Load()
     Me.Caption = "About " & App.Title
-    lblVersion.Caption = "Version: " & App.Major & "." & App.Minor & "." & App.Revision & " Build: 0002"
+    lblVersion.Caption = "Version: " & App.Major & "." & App.Minor & "." & App.Revision & " Build: 0003"
     lblTitle.Caption = App.Title
 End Sub
 

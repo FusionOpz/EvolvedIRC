@@ -2,7 +2,7 @@ VERSION 5.00
 Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "COMCTL32.OCX"
 Begin VB.Form frmSplash 
    Appearance      =   0  'Flat
-   BackColor       =   &H80000005&
+   BackColor       =   &H80000004&
    BorderStyle     =   3  'Fixed Dialog
    ClientHeight    =   5790
    ClientLeft      =   255
@@ -29,16 +29,21 @@ Begin VB.Form frmSplash
    ScaleWidth      =   8925
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin ComctlLib.ProgressBar ProgressBar1 
+   Begin ComctlLib.ProgressBar pgb1 
       Height          =   135
       Left            =   0
       TabIndex        =   0
       Top             =   5640
-      Width           =   8895
-      _ExtentX        =   15690
+      Width           =   8925
+      _ExtentX        =   15743
       _ExtentY        =   238
       _Version        =   327682
-      Appearance      =   1
+      Appearance      =   0
+   End
+   Begin VB.Timer timHideSplash 
+      Interval        =   50
+      Left            =   960
+      Top             =   4920
    End
    Begin VB.Image imgEIRC 
       Appearance      =   0  'Flat
@@ -66,7 +71,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: frmSplash.frm,v 1.3 2004/09/08 10:52:15 dj_dark Exp $
+' $Id: frmSplash.frm,v 1.4 2004/10/22 03:56:44 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -95,13 +100,17 @@ End Sub
 'End Sub
 
 Private Sub timHideSplash_Timer()
-Load frmMain
-frmMain.Show
-Unload Me
+    If (pgb1.Value < 100) Then
+        pgb1.Value = pgb1.Value + 1
+    Else
+        Load frmMain
+        frmMain.Show
+        Unload Me
+    End If
 End Sub
 
 Private Sub imgEIRC_Click()
-Load frmMain
-frmMain.Show
-Unload Me
+    Load frmMain
+    frmMain.Show
+    Unload Me
 End Sub

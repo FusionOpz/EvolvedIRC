@@ -2,10 +2,10 @@ VERSION 5.00
 Begin VB.Form frmOptions 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Options"
-   ClientHeight    =   1890
+   ClientHeight    =   5805
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   4515
+   ClientWidth     =   8865
    BeginProperty Font 
       Name            =   "Tahoma"
       Size            =   8.25
@@ -19,95 +19,56 @@ Begin VB.Form frmOptions
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   1890
-   ScaleWidth      =   4515
+   ScaleHeight     =   5805
+   ScaleWidth      =   8865
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton cmdOk 
       Caption         =   "Ok"
-      Height          =   255
-      Left            =   1680
-      TabIndex        =   10
-      Top             =   1560
-      Width           =   855
+      Height          =   375
+      Left            =   5640
+      TabIndex        =   4
+      Top             =   5400
+      Width           =   975
    End
    Begin VB.CommandButton cmdCancel 
       Caption         =   "Cancel"
-      Height          =   255
-      Left            =   2640
-      TabIndex        =   9
-      Top             =   1560
-      Width           =   855
+      Height          =   375
+      Left            =   6720
+      TabIndex        =   3
+      Top             =   5400
+      Width           =   975
    End
    Begin VB.CommandButton cmdApply 
       Caption         =   "Apply"
-      Height          =   255
-      Left            =   3600
-      TabIndex        =   8
-      Top             =   1560
-      Width           =   855
-   End
-   Begin VB.TextBox txtUser 
-      Height          =   285
-      Left            =   1920
-      TabIndex        =   7
-      Text            =   "EvolvedIRC User"
-      Top             =   1200
-      Width           =   2535
-   End
-   Begin VB.TextBox txtNick 
-      Height          =   285
-      Left            =   1920
-      TabIndex        =   6
-      Text            =   "Guest_##"
-      Top             =   840
-      Width           =   2535
-   End
-   Begin VB.TextBox txtPort 
-      Height          =   285
-      Left            =   1920
-      TabIndex        =   5
-      Text            =   "6667"
-      Top             =   480
-      Width           =   2535
-   End
-   Begin VB.TextBox txtServ 
-      Height          =   285
-      Left            =   1920
-      TabIndex        =   4
-      Top             =   120
-      Width           =   2535
-   End
-   Begin VB.Label lblUser 
-      Caption         =   "Username:"
-      Height          =   255
-      Left            =   120
-      TabIndex        =   3
-      Top             =   1200
-      Width           =   1695
-   End
-   Begin VB.Label lblNick 
-      Caption         =   "Nickname:"
-      Height          =   255
-      Left            =   120
+      Height          =   375
+      Left            =   7800
       TabIndex        =   2
-      Top             =   840
-      Width           =   1695
+      Top             =   5400
+      Width           =   975
    End
-   Begin VB.Label lblPort 
-      Caption         =   "Port(Default is 6667):"
-      Height          =   255
-      Left            =   120
+   Begin VB.ListBox lstOptMenu 
+      Appearance      =   0  'Flat
+      Height          =   5490
+      Left            =   0
       TabIndex        =   1
-      Top             =   480
-      Width           =   1695
-   End
-   Begin VB.Label lblServ 
-      Caption         =   "Server Address:"
-      Height          =   255
-      Left            =   120
-      TabIndex        =   0
       Top             =   120
-      Width           =   1695
+      Width           =   2415
+   End
+   Begin VB.Frame Frame1 
+      Height          =   5295
+      Left            =   2520
+      TabIndex        =   0
+      Top             =   0
+      Width           =   6255
+      Begin EvolvedIRC.pgMain pgMain 
+         Height          =   4935
+         Left            =   120
+         TabIndex        =   5
+         Top             =   240
+         Width           =   6015
+         _ExtentX        =   10610
+         _ExtentY        =   8705
+      End
    End
 End
 Attribute VB_Name = "frmOptions"
@@ -127,7 +88,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: frmOptions.frm,v 1.3 2004/09/08 10:52:15 dj_dark Exp $
+' $Id: frmOptions.frm,v 1.4 2004/10/22 03:56:44 dj_dark Exp $
 '
 '
 'This program is free software.

@@ -2,8 +2,8 @@ VERSION 5.00
 Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form frmMain 
-   Caption         =   "EvolvedIRC Codename ""Grasshopper"", Build: 0002"
-   ClientHeight    =   6585
+   Caption         =   "EvolvedIRC Codename ""Grasshopper"", Build: 0003"
+   ClientHeight    =   6525
    ClientLeft      =   3660
    ClientTop       =   3225
    ClientWidth     =   9855
@@ -18,21 +18,30 @@ Begin VB.Form frmMain
    EndProperty
    Icon            =   "frmMain.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6585
+   ScaleHeight     =   6525
    ScaleWidth      =   9855
+   Begin VB.ListBox lstUsers 
+      Appearance      =   0  'Flat
+      Height          =   6465
+      ItemData        =   "frmMain.frx":2B82
+      Left            =   8280
+      List            =   "frmMain.frx":2B84
+      TabIndex        =   2
+      Top             =   0
+      Width           =   1575
+   End
    Begin RichTextLib.RichTextBox txtBuffer 
       Height          =   6135
       Left            =   0
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   0
-      Width           =   8295
-      _ExtentX        =   14631
+      Width           =   8175
+      _ExtentX        =   14420
       _ExtentY        =   10821
       _Version        =   393217
-      Enabled         =   -1  'True
       ScrollBars      =   2
       Appearance      =   0
-      TextRTF         =   $"frmMain.frx":2B82
+      TextRTF         =   $"frmMain.frx":2B86
    End
    Begin MSWinsockLib.Winsock sckIRC 
       Left            =   8760
@@ -41,21 +50,13 @@ Begin VB.Form frmMain
       _ExtentY        =   741
       _Version        =   393216
    End
-   Begin VB.ListBox lstUsers 
-      Appearance      =   0  'Flat
-      Height          =   6465
-      Left            =   8400
-      TabIndex        =   1
-      Top             =   0
-      Width           =   1455
-   End
    Begin VB.TextBox txtChat 
       Appearance      =   0  'Flat
       Height          =   285
       Left            =   0
       TabIndex        =   0
       Top             =   6240
-      Width           =   8295
+      Width           =   8175
    End
    Begin VB.Menu mnuFile 
       Caption         =   "File"
@@ -126,7 +127,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: frmMain.frm,v 1.3 2004/09/08 10:52:15 dj_dark Exp $
+' $Id: frmMain.frm,v 1.4 2004/10/22 03:56:44 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -140,6 +141,12 @@ Attribute VB_Exposed = False
 '
 'You should have received a copy of the GNU General Public License along with this program.
 'if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+'TODO:
+'Start formattig the recived code,
+'Start coding Options System,
+'Make use of the User list box,
+'Commit To CVS!
 
 Option Explicit
 
@@ -160,7 +167,8 @@ Private Sub Connect()
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-    sckIRC.SendData "QUIT : " & "Time for me to go l8r" & vbCrLf
+On Error Resume Next
+    sckIRC.SendData "QUIT : Time for me to go l8r" & vbCrLf
     sckIRC.Close
 End Sub
 
@@ -173,7 +181,7 @@ Private Sub mnuConnect_Click()
 End Sub
 
 Private Sub mnuDiscon_Click()
-    sckIRC.SendData "QUIT : " & "Time for me to go l8r" & vbCrLf
+    sckIRC.SendData "QUIT : Time for me to go l8r" & vbCrLf
     sckIRC.Close
 End Sub
 
@@ -188,6 +196,7 @@ End Sub
 Private Sub mnuFnn_Click()
 On Error Resume Next
     With sckIRC
+        .SendData "QUIT : Time for me to go l8r" & vbCrLf
         .Close
         .RemoteHost = "irc.freenode.net" 'The IRC server
         .RemotePort = 6667 'Connect on port 6667
@@ -201,6 +210,7 @@ End Sub
 
 Private Sub mnuWbo_Click()
     With sckIRC
+        .SendData "QUIT : Time for me to go l8r" & vbCrLf
         .Close
         .RemoteHost = "irc.winbeta.org" 'The IRC server
         .RemotePort = 6667 'Connect on port 6667
@@ -213,9 +223,9 @@ End Sub
 'TODO: now get to coding the dialog so it'll remember the settings.
 Private Sub sckIRC_Connect()
     With sckIRC
-        .SendData "NICK Wsvb_test" & vbCrLf
-        .SendData "USER Wsvb_test " & sckIRC.LocalHostName & " " & _
-            UCase(sckIRC.LocalHostName & ":" & sckIRC.LocalPort & "/0") & " :WinsockVB Test Client" & vbCrLf
+        .SendData "NICK Guest_##" & vbCrLf
+        .SendData "USER EvolvedIRC User " & sckIRC.LocalHostName & " " & _
+            UCase(sckIRC.LocalHostName & ":" & sckIRC.LocalPort & "/0") & " :EvolvedIRC Pre-Alpha Client" & vbCrLf
         .SendData "JOIN #lobby" & vbCrLf
     End With
 End Sub
@@ -223,12 +233,10 @@ End Sub
 Private Sub sckIRC_DataArrival(ByVal bytesTotal As Long)
     On Error Resume Next
     
-    'Dim sData As String
     Dim sRecv As String
     
     sckIRC.GetData sRecv 'Put the data recieved into the string
-    'sckIRC.GetData sData 'Put the data recieved into the string
-    'txtBuffer.Text = txtBuffer.Text & sData
+    
 
     
     'Play ping pong with the server
@@ -243,12 +251,12 @@ End Sub
 
 Private Sub txtChat_KeyPress(KeyAscii As Integer)
     On Error Resume Next
-    'TODO: Write more Commands
+    'TODO: Add more client commands
     If KeyAscii = 13 Then
         'If the text is not a command (prefixed with '/'), then just speak the text
         'normally. Otherwise, see which command it is, and execute it accordingly.
         If Left$(txtChat.Text, 1) <> "/" Then
-            sckIRC.SendData "PRIVMSG #ignition-project :" & txtChat.Text & vbCrLf
+            sckIRC.SendData "PRIVMSG #lobby :" & txtChat.Text & vbCrLf
         Else
             If LCase$(Left$(txtChat.Text, 4)) = "/me " Then 'It's an action
                 txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 4)
@@ -275,15 +283,41 @@ Private Sub txtChat_KeyPress(KeyAscii As Integer)
                 sckIRC.SendData "PRIVMSG chanserv :" & txtChat.Text & vbCrLf
             End If
             
-            'NOTE: MSG dose not work yet -_-
             If LCase$(Left$(txtChat.Text, 5)) = "/msg " Then 'MSG
                 txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 5)
-                sckIRC.SendData "PRIVMSG " & ":" & txtChat.Text & vbCrLf
+                Dim Count, SendTo, Sendtxt
+                Count = 1
+                While (Sendtxt <> Chr(32))
+                    Sendtxt = Right(Left(txtChat.Text, Count), 1)
+                    Count = Count + 1
+                Wend
+                SendTo = Left(txtChat.Text, Count - 1)
+                sckIRC.SendData "PRIVMSG " & SendTo & ":" & Right(txtChat.Text, Len(txtChat.Text) - (Count - 1)) & vbCrLf
             End If
             
+            'If LCase$(Left$(txtChat.Text, 8)) = "/version " Then 'Version
+            '    txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 8)
+            '    Dim Count, SendTo
+            '    Count = 1
+            '    SendTo = Left$(txtChat.Text, Count - 1)
+            '    sckIRC.SendData "VERSION " & SendTo & vbCrLf
+            'End If
         End If
         
         txtChat.Text = "" 'Clear the textbox
     End If
 End Sub
 
+
+Private Sub Form_Resize()
+On Error Resume Next
+    'width stuff
+    lstUsers.Left = ScaleWidth - 0 - lstUsers.Width
+    txtBuffer.Width = ScaleWidth - lstUsers.Width - 100
+    txtChat.Width = ScaleWidth - lstUsers.Width - 100
+
+    'now adjust the height
+    txtChat.Top = ScaleHeight - 0 - txtChat.Height
+    txtBuffer.Height = txtChat.Top - txtBuffer.Top - 120
+    lstUsers.Height = ScaleHeight - 0 - lstUsers.Top
+End Sub
