@@ -127,7 +127,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: frmOptions.frm,v 1.1 2004/09/03 02:34:38 dj_dark Exp $
+' $Id: frmOptions.frm,v 1.2 2004/09/07 20:31:10 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -141,6 +141,16 @@ Attribute VB_Exposed = False
 '
 'You should have received a copy of the GNU General Public License along with this program.
 'if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+Option Explicit
+
+Private iniFile As String
+Private Sub Form_Load()
+
+    iniFile = App.Path & "\options.ini"
+    LoadFileToTextbox
+    
+End Sub
 
 Private Sub cmdCancel_Click()
 Unload Me

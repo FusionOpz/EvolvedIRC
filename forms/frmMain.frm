@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form frmMain 
-   Caption         =   "EvolvedIRC Codename ""Grasshopper"", Build: 0001"
+   Caption         =   "EvolvedIRC Codename ""Grasshopper"", Build: 0002"
    ClientHeight    =   6585
    ClientLeft      =   3660
    ClientTop       =   3225
@@ -68,6 +68,27 @@ Begin VB.Form frmMain
          Shortcut        =   ^E
       End
    End
+   Begin VB.Menu mnuServ 
+      Caption         =   "Servers"
+      Begin VB.Menu mnuFnn 
+         Caption         =   "FreeNode.Net"
+      End
+      Begin VB.Menu mnuWbo 
+         Caption         =   "WinBeta.Org"
+      End
+   End
+   Begin VB.Menu mnuChan 
+      Caption         =   "Channels"
+      Begin VB.Menu mnuE2G 
+         Caption         =   "#Evolved2Go"
+      End
+      Begin VB.Menu mnuEIRC 
+         Caption         =   "#EvolvedIRC"
+      End
+      Begin VB.Menu mnuIP 
+         Caption         =   "#Ignition-Project"
+      End
+   End
    Begin VB.Menu mnuOptions 
       Caption         =   "Options"
       Begin VB.Menu mnuOpt 
@@ -100,7 +121,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: frmMain.frm,v 1.1 2004/09/03 02:34:38 dj_dark Exp $
+' $Id: frmMain.frm,v 1.2 2004/09/07 20:31:10 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -119,6 +140,7 @@ Option Explicit
 
 'TODO: Write Options dialog to set Server address, server port, nickname and username,
 'Also get it to either save the optios to a Var or into a File.
+'TODO: now get to coding the dialog so it'll remember the settings.
 
 Private Sub Form_Load()
 '    Call Connect
@@ -157,18 +179,36 @@ On Error Resume Next
     Unload frmAbout
 End Sub
 
+Private Sub mnuFnn_Click()
+On Error Resume Next
+    With sckIRC
+        .RemoteHost = "irc.freenode.net" 'The IRC server
+        .RemotePort = 6667 'Connect on port 6667
+        .Connect
+    End With
+End Sub
+
 Private Sub mnuOpt_Click()
     frmOptions.Show
 End Sub
 
+Private Sub mnuWbo_Click()
+    With sckIRC
+        .RemoteHost = "irc.winbeta.org" 'The IRC server
+        .RemotePort = 6667 'Connect on port 6667
+        .Connect
+    End With
+End Sub
+
 'TODO: Write Options dialog to set Server address, server port, nickname and username,
 'Also get it to either save the optios to a Var or into a File.
+'TODO: now get to coding the dialog so it'll remember the settings.
 Private Sub sckIRC_Connect()
     With sckIRC
         .SendData "NICK Wsvb_test" & vbCrLf
         .SendData "USER Wsvb_test " & sckIRC.LocalHostName & " " & _
             UCase(sckIRC.LocalHostName & ":" & sckIRC.LocalPort & "/0") & " :WinsockVB Test Client" & vbCrLf
-        .SendData "JOIN #ignition-project" & vbCrLf
+        .SendData "JOIN #lobby" & vbCrLf
     End With
 End Sub
 
@@ -204,7 +244,7 @@ Private Sub txtChat_KeyPress(KeyAscii As Integer)
         Else
             If LCase$(Left$(txtChat.Text, 4)) = "/me " Then 'It's an action
                 txtChat.Text = Right$(txtChat.Text, Len(txtChat.Text) - 4)
-                sckIRC.SendData "PRIVMSG #ignition-project :" & Chr(1) & "ACTION " & txtChat.Text & Chr(1) & vbCrLf
+                sckIRC.SendData "PRIVMSG #lobby :" & Chr(1) & "ACTION " & txtChat.Text & Chr(1) & vbCrLf
             End If
             
             If LCase$(Left$(txtChat.Text, 6)) = "/join " Then 'JOIN

@@ -164,7 +164,7 @@ Attribute VB_Exposed = False
 '                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
 '                     Website <http://myth.ws4f.us/>
 '
-' $Id: frmAbout.frm,v 1.1 2004/09/03 02:34:38 dj_dark Exp $
+' $Id: frmAbout.frm,v 1.2 2004/09/07 20:31:10 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -219,7 +219,7 @@ End Sub
 
 Private Sub Form_Load()
     Me.Caption = "About " & App.Title
-    lblVersion.Caption = "Version: " & App.Major & "." & App.Minor & "." & App.Revision & " Build: 0001"
+    lblVersion.Caption = "Version: " & App.Major & "." & App.Minor & "." & App.Revision & " Build: 0002"
     lblTitle.Caption = App.Title
 End Sub
 
