@@ -45,6 +45,7 @@ Begin VB.Form frmMain
       _ExtentX        =   13785
       _ExtentY        =   9975
       _Version        =   393217
+      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       DisableNoScroll =   -1  'True
@@ -52,8 +53,8 @@ Begin VB.Form frmMain
       TextRTF         =   $"frmMain.frx":29C12
    End
    Begin MSWinsockLib.Winsock sckIRC 
-      Left            =   9240
-      Top             =   360
+      Left            =   9360
+      Top             =   240
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -67,7 +68,7 @@ Begin VB.Form frmMain
       Width           =   7815
    End
    Begin MSComctlLib.ImageList iUsers 
-      Left            =   8520
+      Left            =   8640
       Top             =   240
       _ExtentX        =   1005
       _ExtentY        =   1005
@@ -79,32 +80,32 @@ Begin VB.Form frmMain
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   6
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMain.frx":29C8D
+            Picture         =   "frmMain.frx":29CD4
             Key             =   "owner"
             Object.Tag             =   "owner"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMain.frx":2A227
+            Picture         =   "frmMain.frx":2A26E
             Key             =   "user"
             Object.Tag             =   "user"
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMain.frx":2A7C1
+            Picture         =   "frmMain.frx":2A808
             Key             =   "host"
             Object.Tag             =   "host"
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMain.frx":2AD5B
+            Picture         =   "frmMain.frx":2ADA2
             Key             =   "halfop"
             Object.Tag             =   "halfop"
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMain.frx":2B2F5
+            Picture         =   "frmMain.frx":2B33C
             Key             =   "voice"
             Object.Tag             =   "voice"
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMain.frx":2B88F
+            Picture         =   "frmMain.frx":2B8D6
             Key             =   "admin"
             Object.Tag             =   "admin"
          EndProperty
@@ -189,10 +190,10 @@ Begin VB.Form frmMain
       Width           =   4575
    End
    Begin VB.Image imgTop 
-      DragIcon        =   "frmMain.frx":2BE29
+      DragIcon        =   "frmMain.frx":2BE70
       Height          =   720
       Left            =   120
-      Picture         =   "frmMain.frx":55A3B
+      Picture         =   "frmMain.frx":55A82
       Top             =   120
       Width           =   720
    End
@@ -221,27 +222,6 @@ Begin VB.Form frmMain
          Shortcut        =   ^E
       End
    End
-   Begin VB.Menu mnuServ 
-      Caption         =   "Servers"
-      Begin VB.Menu mnuFnn 
-         Caption         =   "FreeNode.Net"
-      End
-      Begin VB.Menu mnuWbo 
-         Caption         =   "WinBeta.Org"
-      End
-   End
-   Begin VB.Menu mnuChan 
-      Caption         =   "Channels"
-      Begin VB.Menu mnuE2G 
-         Caption         =   "#Evolved2Go"
-      End
-      Begin VB.Menu mnuEIRC 
-         Caption         =   "#EvolvedIRC"
-      End
-      Begin VB.Menu mnuIP 
-         Caption         =   "#Ignition-Project"
-      End
-   End
    Begin VB.Menu mnuOptions 
       Caption         =   "Options"
       Begin VB.Menu mnuOpt 
@@ -251,6 +231,14 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mnuHelp 
       Caption         =   "Help"
+      Begin VB.Menu mnuSupport 
+         Caption         =   "Support"
+         Enabled         =   0   'False
+         Shortcut        =   ^S
+      End
+      Begin VB.Menu sept 
+         Caption         =   "-"
+      End
       Begin VB.Menu mnuAbout 
          Caption         =   "&About EvolvedIRC"
          Shortcut        =   ^A
@@ -271,10 +259,9 @@ Attribute VB_Exposed = False
 'remain intact!)
 'Released under the GNU General Public License
 'Contact information: Matthew Sporich (DJ_Dark) <djdark@gmail.com>
-'                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
-'                     Website <http://evolved2go.ws4f.us/>
+'                     Website <http://quantump.net/>
 '
-' $Id: frmMain.frm,v 1.9 2005/03/02 23:47:25 dj_dark Exp $
+' $Id: frmMain.frm,v 1.10 2005/06/30 22:57:00 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -321,6 +308,7 @@ Dim Port As Integer
 Dim Topic As String
 Dim IRCX As Integer
 Dim isIRCX As String
+Dim dDebug As String
 
 
 'TODO: Write Options dialog to set Server address, server port, nickname and username,
@@ -370,6 +358,7 @@ Debug.Print "Options Loaded"
         Nick = ReadINI("userinfo", "nickname", App.Path + "\options.ini")
         User = ReadINI("userinfo", "username", App.Path + "\options.ini")
         RName = ReadINI("userinfo", "realname", App.Path + "\options.ini")
+        dDebug = ReadINI("userinfo", "debug", App.Path + "\options.ini")
     
         'Server Options
         Server = ReadINI("server", "address", App.Path + "\options.ini")
@@ -479,6 +468,10 @@ Private Sub sckIRC_Connect()
         '    UCase(sckIRC.LocalHostName & ":" & sckIRC.LocalPort & "/0") & " :EvolvedIRC Pre-Alpha Client" & vbCrLf
         '.SendData "JOIN " & Channel & vbCrLf
     End With
+    RTF_SetBold False
+    RTF_SetColor QBColor(2)
+    RTF_AddText ilIndent
+    RTF_AddText "Now connection to " & Server & " as " & Nick & vbCrLf
 End Sub
 
 Function RightOf(strData As String, strDelim As String) As String
@@ -524,11 +517,20 @@ Dim tmpPartMsg As String
 Dim a As Long
 Dim B As Long
 
+Dim tmpDebug As String
+
+
 sckIRC.GetData tmpString, vbString
-InternalDebug tmpString
+
+If dDebug = 1 Then
+    InternalDebug tmpString
+End If
+
+
 tmpString = Replace(tmpString, vbCrLf, vbLf)
 tmpString = Replace(tmpString, vbCr, vbLf)
 tmpSplitLF = Split(tmpString, vbLf)
+
 
 For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
   tmpSplit = Split(tmpSplitLF(a), " ")
@@ -553,8 +555,8 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
     Case "005"
       If UCase$(Left(tmpSplit(3), 4)) = "IRCX" Then
         sckIRC.SendData "IRCX" & vbCrLf
-      'ElseIf UCase$(Left(tmpSplit(3), 4)) = "IRC" Then
-      '  sckIRC.SendData "IRC" & vbCrLf
+      ElseIf UCase$(Left(tmpSplit(3), 4)) = "IRC" Then
+        sckIRC.SendData "IRC" & vbCrLf
       End If
     Case "251"
       'we send this here, because some servers don't send a 005
@@ -600,11 +602,20 @@ For a = LBound(tmpSplitLF) To UBound(tmpSplitLF)
       Next B
     Case "372"
         RTF_SetBold False
-        RTF_SetColor QBColor(0)
-        RTF_AddText ilIndent
-        RTF_SetBold True
-        RTF_AddText Replace(Split(tmpPrefix, "!")(0), ":", "") & ": "
+        RTF_SetColor QBColor(4)
+        'RTF_SetBold True
+        'RTF_AddText Replace(Split(tmpPrefix, "!")(0), ":", "") & ": "
         RTF_SetBold False
+        RTF_AddText RightOf(tmpSplitLF(a), ":") & vbCrLf
+    Case "375"
+        RTF_SetBold False
+        RTF_SetColor QBColor(4)
+        RTF_AddText ilIndent
+        RTF_AddText RightOf(tmpSplitLF(a), ":") & vbCrLf
+    Case "376"
+        RTF_SetBold False
+        RTF_SetColor QBColor(4)
+        RTF_AddText ilIndent
         RTF_AddText RightOf(tmpSplitLF(a), ":") & vbCrLf
     Case "433"
       ':localhost 433 Anonymous Ziggy :Nickname is already in use
@@ -760,7 +771,7 @@ For a = 1 To tvUsers.Nodes.Count
 Next a
 End Sub
 
-Private Function ISubClass_WindowProc(ByVal hWnd As Long, ByVal MSG As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+Private Function ISubClass_WindowProc(ByVal hWnd As Long, ByVal msg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
 
 Dim NH As NMHDR
 Dim MF As MSGFILTER
@@ -771,7 +782,7 @@ On Error Resume Next
 
 'MoveMemory NH, ByVal lParam, Len(NH)
 
-Debug.Print "MSG: " & MSG & " lParam: " & lParam & " wParam: " & wParam
+Debug.Print "MSG: " & msg & " lParam: " & lParam & " wParam: " & wParam
 Select Case NH.code
   Case EN_LINK
      ProcessLinkEvent lParam
@@ -810,7 +821,7 @@ Dim iShift As Integer
    'Set oLinkRange = Range(tLink.chrg.cpMin, tLink.chrg.cpMax)
   Debug.Print "Start: " & tLink.chrg.cpMin & " End: " & tLink.chrg.cpMax
    ' Raise the event
-   Select Case tLink.MSG
+   Select Case tLink.msg
 
       Case WM_LBUTTONDBLCLK, WM_RBUTTONDBLCLK, WM_MBUTTONDBLCLK
          'not really needed
@@ -906,7 +917,7 @@ Private Sub txtChat_KeyPress(KeyAscii As Integer)
                 RTF_SetColor QBColor(9)
                 RTF_AddText ilIndent & "EvolvedIRC Version " & Version & vbCrLf
                 RTF_SetColor QBColor(9)
-                RTF_AddText ilIndent & "© 2004 Matthew Sporich and Contributors. For product information, please see http://evolved2go.ws4f.us/" & vbCrLf
+                RTF_AddText ilIndent & "© 2005 Matthew Sporich and Contributors. For product information, please see http://quantump.net/" & vbCrLf
                 RTF_SetColor QBColor(9)
                 RTF_AddText ilIndent & "EvolvedIRC is protected by the GNU General Public License. For more information, type /gpl." & vbCrLf
             End If

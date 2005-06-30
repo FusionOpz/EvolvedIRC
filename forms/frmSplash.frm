@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "COMCTL32.OCX"
+Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "comctl32.ocx"
 Begin VB.Form frmSplash 
    Appearance      =   0  'Flat
    BackColor       =   &H80000004&
@@ -68,10 +68,9 @@ Attribute VB_Exposed = False
 'remain intact!)
 'Released under the GNU General Public License
 'Contact information: Matthew Sporich (DJ_Dark) <djdark@gmail.com>
-'                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
-'                     Website <http://evolved2go.ws4f.us/>
+'                     Website <http://quantump.net/>
 '
-' $Id: frmSplash.frm,v 1.9 2005/03/02 23:47:25 dj_dark Exp $
+' $Id: frmSplash.frm,v 1.10 2005/06/30 22:57:01 dj_dark Exp $
 '
 '
 'This program is free software.

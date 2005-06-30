@@ -8,10 +8,9 @@ Attribute VB_Name = "modMain"
 'remain intact!)
 'Released under the GNU General Public License
 'Contact information: Matthew Sporich (DJ_Dark) <djdark@gmail.com>
-'                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
-'                     Website <http://evolved2go.ws4f.us/>
+'                     Website <http://quantump.net/>
 '
-' $Id: modMain.bas,v 1.3 2005/03/02 23:47:25 dj_dark Exp $
+' $Id: modMain.bas,v 1.4 2005/06/30 22:57:01 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -26,10 +25,17 @@ Attribute VB_Name = "modMain"
 'You should have received a copy of the GNU General Public License along with this program.
 'if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
+'Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" (ByVal hWnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
+'Private Declare Function CallWindowProc Lib "user32" Alias "CallWindowProcA" (ByVal lpPrevWndFunc As Long, ByVal hWnd As Long, ByVal msg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Any) As Long
+'Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
+'Private Declare Function ShellExecute Lib "shell32" Alias "ShellExecuteA" (ByVal hWnd As Long, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Long) As Long
+
 Public Server_AuthNotices As Boolean
+'Public link As SHDocVw.WebBrowser
 
 'some constants
-Public Const BuildID As String = "20050203-cvs"
+Public Const BuildID As String = "20050630-cvs" 'YYYYMMDD-
 
 'indent constant
 'vbTab is too huge, but somehow you can set tab lengths in the Rich Text box
@@ -37,7 +43,7 @@ Public Const BuildID As String = "20050203-cvs"
 Public Const ilIndent As String = ""
 
 'sendmessage API
-Public Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Any) As Long
+'Public Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Any) As Long
 'cursor stuff
 Public Declare Function GetCursorPos Lib "user32" (lpPoint As POINTL) As Long
 Public Declare Function ScreenToClient Lib "user32" (ByVal hWnd As Long, lpPoint As POINTL) As Long
@@ -136,7 +142,7 @@ End Type
 
 Type ENLINK
    NMHDR As NMHDR
-   MSG As Integer
+   msg As Integer
    wParam As Long
    lParam As Long
    chrg As CHARRANGE
@@ -144,7 +150,7 @@ End Type
 
 Type MSGFILTER
    NMHDR As NMHDR
-   MSG As Long
+   msg As Long
    wParam As Long
    lParam As Long
 End Type
@@ -192,7 +198,7 @@ Public Sub InternalDebug(strText As String)
 Dim F As Long
 F = FreeFile
 Open App.Path & "\debug.log" For Append As F
-Print #F, "[" & Now & "] " & strText
+Print #F, "[" & Now & "] " & strText & CrLf
 Close #F
 Debug.Print strText
 End Sub

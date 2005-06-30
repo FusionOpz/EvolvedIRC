@@ -1,52 +1,75 @@
 <?xml version="1.0" encoding="utf-8" ?>
-	<evolvedirc xmlns="http://qr.ws4f.us/xmlns/evolvedirc/0.3.0">
+<evolvedirc xmlns="http://qr.ws4f.us/xmlns/evolvedirc/0.3.0">
+
+	<!--
+		EvolvedIRC 0.3.0 Configuration
+		==============================
+		$Id: options.xml,v 1.3 2005/06/30 22:56:55 dj_dark Exp $
+		This XML file contains all of the settings
+		required for EvolvedIRC to properly
+		function. Using comments, we attempt to
+		completely document what each line changes
+		and what each line does, so PLEASE read the
+		comments!
+	-->
 	
-		<!--
-			EvolvedIRC 0.3.0 Configuration
-			==============================
-
-			$Id: options.xml,v 1.2 2005/02/11 20:32:48 dj_dark Exp $
-
-			This XML file contains all of the settings
-			required for EvolvedIRC to properly
-			function. Using comments, we attempt to
-			completely document what each line changes
-			and what each line does, so PLEASE read the
-			comments!
-		-->
+	<userinfo>
+		<username>EvolvedIRC</username> <!-- This is your IRC Username sent to the server using the USER command. -->
+		<nickname>EvolvedIRC</nickname>	<!-- This is your IRC Nickname sent to the server using the NICK command. -->
+		<realname>EvolvedIRC Client</realname> <!-- This is your Realname to identify yourself on the WHOIS query. -->
 		
-		<userinfo>
-			<username>EvolvedIRC</username> <!-- This is your IRC Username sent to the server using the USER command. -->
-			<nickname>EvolvedIRC</nickname>	<!-- This is your IRC Nickname sent to the server using the NICK command. -->
-			<realname>EvolvedIRC Client</realname> <!-- This is your Realname to identify yourself on the WHOIS query. -->
-		</userinfo>
-
-		<serverinfo>
+		<os>Microsoft Windows XP Service Pack 1 [Windows NT 5.01.2600]</os> 
+		<!-- 
+			This is set everytime EvolvedIRC is opened, so don't even try it :P
+			Also on Linux this would also have your kernel version and Linux distro	version. 
+			E.G. MandrakeLinux 10.1 [Kernel 2.6.8].
+		-->
+	</userinfo>
+	<serverinfo>
+		<address>irc.freenode.net</address>
+		<port>6667</port>
+		<defaultchan>#EvolvedIRC</defaultchan>
+		<ircx>1</ircx>
+		<authnotices>false</authnotices>
+	</serverinfo>
+	
+	<server-list>
+		
+		<server>
+			<name>Freenode.net</name> 
 			<address>irc.freenode.net</address>
-			<port1>6667</port1>
-			<port2>6668</port2>
-			<defaultchan>#EvolvedIRC</defaultchan>
-			<ircx>1</ircx>
-			<authnotices>false</authnotices>
-		</serverinfo>
+			<port>6667</port>
+		</server>
 		
-		<server-list>
-			<server1 name="Freenode.net" address="irc.freenode.net" port="6667" />
-			<server2 name="Winbeta IRC" address="irc.winbeta.org" port="6667" />
-		</server-list>
+		<server>
+			<name>Winbeta IRC</name> 
+			<address>irc.winbeta.org</address>
+			<port>6667</port>
+		</server>
 		
-		<!--
-			Core Data
-			==============================
-			
-			Don't not at all change anything 
-			under this section, this is the 
-			configuration for the core of 
-			EvolvedIRC. If anything under 
-			this section is misconfigured 
-			EvolvedIRC will not run.
-		-->
-		<core>
-			<!-- Nothing here yet -->
-		</core>
-	</evolvedirc>
+	</server-list>
+	
+	<!--
+		Core Data
+		==============================
+		
+		Don't not at all change anything 
+		under this section, this is the 
+		configuration for the core of 
+		EvolvedIRC. If anything under 
+		this section is misconfigured 
+		EvolvedIRC will not run.
+	-->
+	<core>
+		<auto-update>
+			<full-update>0</full-update>
+			<!-- planned feature. - This will allow a full update of EvolvedIRC. -->
+			<core-update>0</core-update>
+			<!-- Planned feature. - This will allow only core features to be 
+			updated this mens the UI and Config file will stay the same. -->
+			<ui-update>0</ui-update>
+			<!-- Planned feature. - This feature will only update the UI (User Interface), 
+			we do not plan on having this active at all. -->
+		</auto-update>
+	</core>
+</evolvedirc>

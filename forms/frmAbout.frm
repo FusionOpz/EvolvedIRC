@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form frmAbout 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "About EvolvedIRC Codename ""Grasshopper"""
-   ClientHeight    =   3555
+   ClientHeight    =   3810
    ClientLeft      =   2340
    ClientTop       =   1935
    ClientWidth     =   5730
@@ -11,7 +11,7 @@ Begin VB.Form frmAbout
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   2453.724
+   ScaleHeight     =   2629.73
    ScaleMode       =   0  'User
    ScaleWidth      =   5380.766
    ShowInTaskbar   =   0   'False
@@ -38,20 +38,38 @@ Begin VB.Form frmAbout
       Height          =   345
       Left            =   4440
       TabIndex        =   0
-      Top             =   2640
-      Width           =   1260
+      Top             =   2880
+      Width           =   1140
    End
    Begin VB.CommandButton cmdSysInfo 
       Caption         =   "&System Info..."
       Height          =   345
       Left            =   4440
       TabIndex        =   2
-      Top             =   3120
-      Width           =   1245
+      Top             =   3360
+      Width           =   1125
+   End
+   Begin VB.Label lblQP 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Quantum Programming"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   -1  'True
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Left            =   120
+      TabIndex        =   7
+      Top             =   2520
+      Width           =   1695
    End
    Begin VB.Label lblDisclaimer 
       BackStyle       =   0  'Transparent
-      Caption         =   "Warnning!: This is just a Pre-Alpha Build this is not STABLE!"
+      Caption         =   "Warnning!: This is an Alpha Build this is not STABLE!"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   8.25
@@ -64,7 +82,7 @@ Begin VB.Form frmAbout
       Height          =   615
       Left            =   240
       TabIndex        =   6
-      Top             =   2760
+      Top             =   3000
       Width           =   3975
    End
    Begin VB.Shape Shape1 
@@ -72,7 +90,7 @@ Begin VB.Form frmAbout
       FillStyle       =   0  'Solid
       Height          =   855
       Left            =   120
-      Top             =   2640
+      Top             =   2880
       Width           =   4215
    End
    Begin VB.Line Line1 
@@ -80,9 +98,9 @@ Begin VB.Form frmAbout
       BorderStyle     =   6  'Inside Solid
       Index           =   1
       X1              =   112.686
-      X2              =   5337.57
-      Y1              =   1739.349
-      Y2              =   1739.349
+      X2              =   5183.565
+      Y1              =   1905.001
+      Y2              =   1905.001
    End
    Begin VB.Label lblDescription 
       Caption         =   $"frmAbout.frx":2F0C
@@ -125,9 +143,9 @@ Begin VB.Form frmAbout
       BorderWidth     =   2
       Index           =   0
       X1              =   112.686
-      X2              =   5323.484
-      Y1              =   1739.349
-      Y2              =   1739.349
+      X2              =   5183.565
+      Y1              =   1905.001
+      Y2              =   1905.001
    End
    Begin VB.Label lblVersion 
       Caption         =   "Version"
@@ -161,10 +179,9 @@ Attribute VB_Exposed = False
 'remain intact!)
 'Released under the GNU General Public License
 'Contact information: Matthew Sporich (DJ_Dark) <djdark@gmail.com>
-'                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
-'                     Website <http://evolved2go.ws4f.us/>
+'                     Website <http://quantump.net/>
 '
-' $Id: frmAbout.frm,v 1.9 2005/03/02 23:47:16 dj_dark Exp $
+' $Id: frmAbout.frm,v 1.10 2005/06/30 22:56:59 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -308,3 +325,4 @@ GetKeyError:      ' Cleanup After An Error Has Occured...
     GetKeyValue = False                                     ' Return Failure
     rc = RegCloseKey(hKey)                                  ' Close Registry Key
 End Function
+

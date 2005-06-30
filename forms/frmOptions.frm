@@ -46,10 +46,10 @@ Begin VB.Form frmOptions
    Begin VB.CommandButton cmdOk 
       Caption         =   "Ok"
       Height          =   255
-      Left            =   5640
+      Left            =   5520
       TabIndex        =   3
       Top             =   5520
-      Width           =   975
+      Width           =   1215
    End
    Begin VB.CommandButton cmdCancel 
       Caption         =   "Cancel"
@@ -57,7 +57,7 @@ Begin VB.Form frmOptions
       Left            =   6720
       TabIndex        =   2
       Top             =   5520
-      Width           =   975
+      Width           =   1095
    End
    Begin VB.CommandButton cmdApply 
       Caption         =   "Apply"
@@ -73,6 +73,14 @@ Begin VB.Form frmOptions
       TabIndex        =   0
       Top             =   0
       Width           =   6255
+      Begin VB.CheckBox chkDebug 
+         Caption         =   "Enable Debug"
+         Height          =   255
+         Left            =   120
+         TabIndex        =   20
+         Top             =   2760
+         Width           =   4335
+      End
       Begin VB.CheckBox chkIRCX 
          Caption         =   "Enable IRCX"
          Height          =   375
@@ -184,8 +192,8 @@ Begin VB.Form frmOptions
       Width           =   1935
    End
    Begin VB.Line Line1 
-      X1              =   5520
-      X2              =   1800
+      X1              =   5400
+      X2              =   1920
       Y1              =   5640
       Y2              =   5640
    End
@@ -204,10 +212,9 @@ Attribute VB_Exposed = False
 'remain intact!)
 'Released under the GNU General Public License
 'Contact information: Matthew Sporich (DJ_Dark) <djdark@gmail.com>
-'                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
-'                     Website <http://evolved2go.ws4f.us/>
+'                     Website <http://quantump.net/>
 '
-' $Id: frmOptions.frm,v 1.9 2005/03/02 23:47:25 dj_dark Exp $
+' $Id: frmOptions.frm,v 1.10 2005/06/30 22:57:01 dj_dark Exp $
 '
 '
 'This program is free software.
@@ -232,6 +239,14 @@ Private Sub cmdApply_Click()
     WriteINI "userinfo", "username", txtUser.Text, App.Path + "\options.ini"
     WriteINI "userinfo", "realname", txtRealnm.Text, App.Path + "\options.ini"
     
+    If chkDebug.Value = "1" Then
+        WriteINI "userinfo", "debug", "1", App.Path + "\options.ini"
+    ElseIf chkDebug.Value = "2" Then
+        WriteINI "userinfo", "debug", "1", App.Path + "\options.ini"
+    Else
+        WriteINI "userinfo", "debug", "0", App.Path + "\options.ini"
+    End If
+    
     'Server Options
     WriteINI "server", "address", txtServ.Text, App.Path + "\options.ini"
     WriteINI "server", "port", txtPort.Text, App.Path + "\options.ini"
@@ -244,6 +259,7 @@ Private Sub cmdApply_Click()
     Else
         WriteINI "server", "IRCX", "0", App.Path + "\options.ini"
     End If
+    
 End Sub
 
 Private Sub Form_Load()
@@ -251,6 +267,7 @@ Private Sub Form_Load()
     txtNick.Text = ReadINI("userinfo", "nickname", App.Path + "\options.ini")
     txtUser.Text = ReadINI("userinfo", "username", App.Path + "\options.ini")
     txtRealnm.Text = ReadINI("userinfo", "realname", App.Path + "\options.ini")
+    chkDebug.Value = ReadINI("userinfo", "debug", App.Path + "\options.ini")
 
     'Server Options
     txtServ.Text = ReadINI("server", "address", App.Path + "\options.ini")
@@ -273,11 +290,22 @@ Private Sub cmdOk_Click()
     WriteINI "userinfo", "username", txtUser.Text, App.Path + "\options.ini"
     WriteINI "userinfo", "realname", txtRealnm.Text, App.Path + "\options.ini"
     
+    If chkDebug.Value = "1" Then
+        WriteINI "userinfo", "debug", "1", App.Path + "\options.ini"
+    ElseIf chkDebug.Value = "2" Then
+        WriteINI "userinfo", "debug", "1", App.Path + "\options.ini"
+    Else
+        WriteINI "userinfo", "debug", "0", App.Path + "\options.ini"
+    End If
+    
     'Server Options
     WriteINI "server", "address", txtServ.Text, App.Path + "\options.ini"
     WriteINI "server", "port", txtPort.Text, App.Path + "\options.ini"
     WriteINI "server", "defaultchan", txtDeChan.Text, App.Path + "\options.ini"
+    
     If chkIRCX.Value = "1" Then
+        WriteINI "server", "IRCX", "1", App.Path + "\options.ini"
+    ElseIf chkIRCX.Value = "2" Then
         WriteINI "server", "IRCX", "1", App.Path + "\options.ini"
     Else
         WriteINI "server", "IRCX", "0", App.Path + "\options.ini"

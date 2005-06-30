@@ -8,10 +8,9 @@ Attribute VB_Name = "modConfig"
 'remain intact!)
 'Released under the GNU General Public License
 'Contact information: Matthew Sporich (DJ_Dark) <djdark@gmail.com>
-'                     Evolved2Go Support (Support) <support.evolved2go@gmail.com>
-'                     Website <http://evolved2go.ws4f.us/>
+'                     Website <http://quantump.net/>
 '
-' $Id: modConfig.bas,v 1.3 2005/03/02 23:47:25 dj_dark Exp $
+' $Id: modConfig.bas,v 1.4 2005/06/30 22:57:01 dj_dark Exp $
 '
 '
 'This program is free software.

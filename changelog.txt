@@ -4,7 +4,7 @@
 #
 # DJ = DJ_Dark   (djdark@gmail.com)
 #
-# $Id: changelog.txt,v 1.5 2005/03/02 23:47:08 dj_dark Exp $
+# $Id: changelog.txt,v 1.6 2005/06/30 22:56:55 dj_dark Exp $
 #
 #####June 2004#####
 #
@@ -51,3 +51,7 @@
 #
 [Mar-1] - DJ - Fixxed bug #1117389 but still will not connect to Dancer IRCd.
 [Mar-2] - DJ - Got EvolvedIRC to connect to dancer IRCd.
+
+#####June 2005#####
+#
+[Jun-30] - DJ - The Finally commit of EvolvedIRC VB, we are moving the project to C/C++ and we're trying to make it Cross-Platform compatible :). Cya When we start EvolvedIRC C =D.
